@@ -20,3 +20,5 @@ export default function Profile({navigation}) {
     </Tab.Navigator>
   );
 }
+
+// chưa thể gọi vào từ trang home page
