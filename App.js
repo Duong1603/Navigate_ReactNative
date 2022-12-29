@@ -1,19 +1,22 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 import * as React from 'react';
-import {Button} from 'react-native';
-import {DetailsScreen} from './src/Detailpage';
-import {HomeScreen} from './src/Homepage';
+import { Button } from 'react-native';
+import 'react-native-gesture-handler';
+import { enableExperimentalWebImplementation } from 'react-native-gesture-handler';
+import { DetailsScreen } from './src/Detailpage';
+import { HomeScreen } from './src/Homepage';
 import mapView from './src/Mapview';
 import Profile from './src/Profile';
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+enableExperimentalWebImplementation(true);
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
+      <Drawer.Navigator useLegacyImplementation initialRouteName="Home">
+        <Drawer.Screen
           name="Home"
           component={HomeScreen}
           options={{
@@ -33,11 +36,11 @@ function App() {
               />
             ),
           }}
-        />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-        <Stack.Screen name="Map" component={mapView} />
-        <Stack.Screen name="Profie" component={Profile} />
-      </Stack.Navigator>
+        >
+        <Drawer.Screen name="Details" component={DetailsScreen} />
+        <Drawer.Screen name="Map" component={mapView} />
+        <Drawer.Screen name="Profie" component={Profile} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
